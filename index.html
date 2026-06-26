@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Profesional | Daniel Eliezer Castro May</title>
+    <style>
+        /* --- VARIABLES DE IDENTIDAD VISUAL --- */
+        :root {
+            --color-primario: #1E1E1E;   /* Negro arquitectónico */
+            --color-acento: #A38A67;     /* Dorado/Bronce elegante */
+            --color-secundario: #4A4A4A; /* Gris oscuro para textos secundarios */
+            --color-fondo: #F5F5F3;      /* Blanco roto/Gris minimalista */
+            --color-blanco: #FFFFFF;
+            --fuente: 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--fuente);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-primario);
+            line-height: 1.6;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        header {
+            background-color: var(--color-primario);
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-acento);
+        }
+
+        .logo {
+            color: var(--color-blanco);
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span { color: var(--color-acento); }
+
+        nav a {
+            color: var(--color-blanco);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--color-acento); }
+
+        /* --- SECCIONES GENERALES --- */
+        section {
+            padding: 100px 8%;
+        }
+
+        .titulo-seccion {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            color: var(--color-primario);
+            position: relative;
+        }
+
+        .titulo-seccion::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--color-acento);
+            margin-top: 15px;
+        }
+
+        /* --- SECCIÓN 1: BIENVENIDA / SEMBLANZA --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200') no-repeat center center/cover;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--color-blanco);
+            gap: 40px;
+        }
+
+        .hero-content { max-width: 60%; }
+        .hero h1 { font-size: 3.2rem; margin-bottom: 10px; letter-spacing: 2px; font-weight: 300; }
+        .hero h1 span { color: var(--color-acento); font-weight: bold; }
+        .hero .subtitulo { font-size: 1.1rem; text-transform: uppercase; color: var(--color-acento); letter-spacing: 3px; margin-bottom: 25px; }
+        .hero p { font-size: 1.05rem; color: #CCCCCC; max-width: 600px; text-align: justify; }
+
+        /* AJUSTES DE ENCUADRE DE FOTO: Se aumentó el tamaño del contenedor y se ajustó el enfoque */
+        .foto-perfil {
+            width: 320px; /* Un poco más grande para mejor encuadre */
+            height: 320px;
+            border-radius: 50%;
+            border: 4px solid var(--color-acento); /* Borde ligeramente más grueso */
+            object-fit: cover;
+            object-position: center 20%; /* Mueve el enfoque hacia arriba para mostrar el cabello */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        /* --- SECCIÓN 2: PERFIL PROFESIONAL --- */
+        .perfil-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .bloque-perfil h3 { font-size: 1.4rem; margin-bottom: 20px; color: var(--color-primario); letter-spacing: 1px; }
+        .bloque-perfil p { text-align: justify; color: var(--color-secundario); }
+        .filosofia-box { background: var(--color-primario); color: var(--color-blanco); padding: 30px; border-left: 5px solid var(--color-acento); margin-top: 20px; }
+        .filosofia-box h4 { color: var(--color-acento); margin-bottom: 5px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+
+        .lista-habilidades { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .lista-habilidades li { padding: 10px; background: var(--color-blanco); border-left: 3px solid var(--color-acento); font-size: 0.95rem; font-weight: 500; }
+
+        /* --- SECCIÓN 3: CV --- */
+        .cv-section { background-color: var(--color-blanco); text-align: center; }
+        .cv-section p { font-size: 1.1rem; color: var(--color-secundario); margin-bottom: 30px; }
+        .btn-descarga {
+            display: inline-block;
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 14px 35px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--color-acento);
+            transition: all 0.3s ease;
+        }
+        .btn-descarga:hover { background-color: var(--color-acento); color: var(--color-primario); transform: translateY(-2px); }
+
+        /* --- SECCIÓN 4: PORTAFOLIO --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .proyecto-card {
+            background: var(--color-blanco);
+            border: 1px solid #E0E0E0;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .proyecto-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .proyecto-img { width: 100%; height: 240px; object-fit: cover; border-bottom: 3px solid var(--color-acento); }
+        .proyecto-info { padding: 25px; }
+        .proyecto-info h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--color-primario); letter-spacing: 1px; }
+        .proyecto-info p { font-size: 0.95rem; color: var(--color-secundario); margin-bottom: 12px; text-align: justify; }
+
+        /* --- SECCIÓN 5 Y 6: PROSPECTIVA Y ESTRATEGIA --- */
+        .prospectiva-section { background-color: var(--color-primario); color: var(--color-blanco); }
+        .prospectiva-section .titulo-seccion { color: var(--color-blanco); }
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .time-card {
+            background: rgba(255,255,255,0.03);
+            padding: 30px;
+            border-top: 3px solid var(--color-acento);
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+        .time-card h3 { color: var(--color-acento); margin-bottom: 15px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; font-size: 1.1rem; }
+        .time-card p { font-size: 0.95rem; color: #CCCCCC; text-align: justify; }
+
+        .ruta-critica {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(163, 138, 103, 0.1);
+            border: 1px solid var(--color-acento);
+        }
+        .ruta-critica h3 { color: var(--color-acento); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .ruta-critica p { color: #E0E0E0; text-align: justify; }
+
+        /* --- SECCIÓN 7: CONTACTO --- */
+        .contacto-section { text-align: center; background-color: var(--color-blanco); }
+        .contacto-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .contacto-item {
+            padding: 20px 40px;
+            background: var(--color-fondo);
+            border: 1px solid #E0E0E0;
+            min-width: 250px;
+        }
+        .contacto-item h4 {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: var(--color-acento);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .contacto-item p { font-weight: 600; color: var(--color-primario); }
+
+        /* --- PIE DE PÁGINA --- */
+        footer {
+            background-color: #111111;
+            color: #666666;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            border-top: 1px solid #222222;
+        }
+
+        /* --- RESPONSIVE (MÓVILES Y TABLETS) --- */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column-reverse; height: auto; padding: 60px 5%; text-align: center; gap: 40px; }
+            .hero-content { max-width: 100%; }
+            .hero p { margin: 0 auto; }
+            .perfil-container { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 1.5rem 5%; }
+            nav a { margin: 0 10px; font-size: 0.8rem; }
+            section { padding: 60px 5%; }
+            .lista-habilidades { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">GEOMETRIC | Arq. <span>Daniel Castro</span></div>
+        <nav>
+            <a href="#inicio">Identidad</a>
+            <a href="#perfil">Perfil</a>
+            <a href="#cv">CV</a>
+            <a href="#portafolio">Portafolio</a>
+            <a href="#prospectiva">Prospectiva</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <span class="subtitulo">Portafolio Profesional</span>
+            <h1>Daniel Eliezer <span>Castro May</span></h1>
+            <p>
+                Estudiante del noveno cuatrimestre de la Licenciatura en Arquitectura en el Grupo Tecnológico Universitario, Campus Mérida. A lo largo de mi trayectoria laboral he adquirido valiosa experiencia práctica en el área de la construcción, participando en proyectos de instalaciones de aire acondicionado, electricidad, plomería y cancelería. Esto me permite comprender a fondo la correcta ejecución en obra y el valor del trabajo en equipo multidisciplinario.
+            </p>
+        </div>
+        <img src="foto.png" alt="Daniel Eliezer Castro May" class="foto-perfil">
+    </section>
+
+    <section id="perfil">
+        <h2 class="titulo-seccion">Perfil Profesional</h2>
+        <div class="perfil-container">
+            <div class="bloque-perfil">
+                <h3>Áreas de Interés y Enfoque</h3>
+                <p>
+                    Mi principal interés profesional se encuentra centrado en los sectores de la construcción, la supervisión de obra, el interiorismo y el desarrollo de instalaciones complejas. Mi objetivo prioritario es fusionar esta sólida experiencia práctica en campo con los fundamentos teóricos arquitectónicos y las herramientas digitales más demandadas del mercado.
+                </p>
+                <div class="filosofia-box">
+                    <h4>Filosofía Profesional</h4>
+                    <p>"Líneas puras, espacios vivos. Una síntesis estética basada en la armonía, sobriedad y la geometría atemporal."</p>
+                </div>
+            </div>
+            <div class="bloque-perfil">
+                <h3>Habilidades Técnicas y Blandas</h3>
+                <ul class="lista-habilidades">
+                    <li>AutoCAD Avanzado</li>
+                    <li>Revit / Modelado BIM</li>
+                    <li>Supervisión de Obra</li>
+                    <li>Diseño de Instalaciones</li>
+                    <li>Interiorismo Comercial/Residencial</li>
+                    <li>Liderazgo y Trabajo en Equipo</li>
+                    <li>Comunicación de Ideas Eficaz</li>
+                    <li>Generación de Confianza con Clientes</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="cv-section" id="cv">
+        <h2 class="titulo-seccion" style="text-align: center;">Curriculum Vitae</h2>
+        <p>Formación Académica y Trayectoria en el Grupo Tecnológico Universitario.</p>
+        <a href="#" class="btn-descarga" target="_blank">📥 Descargar Currículum (PDF)</a>
+    </section>
+
+    <section id="portafolio">
+        <h2 class="titulo-seccion">Portafolio Académico</h2>
+        <div class="portfolio-grid">
+            
+            <div class="proyecto-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=500" alt="Casa del Bosque" class="proyecto-img">
+                <div class="proyecto-info">
+                    <h3>Casa del Bosque</h3>
+                    <p><strong>Descripción:</strong> Proyecto residencial diseñado para mimetizarse por completo con su entorno natural, priorizando el uso de la luz natural y ventilaciones cruzadas estratégicas.</p>
+                    <p><strong>Participación:</strong> Diseñador Principal (Investigación conceptual, modelado formal de fachadas y distribución espacial de zonas públicas y privadas).</p>
+                </div>
+            </div>
+
+            <div class="proyecto-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=500" alt="Hotel Boutique" class="proyecto-img">
+                <div class="proyecto-info">
+                    <h3>Hotel Boutique Urbano</h3>
+                    <p><strong>Descripción:</strong> Concepto de alojamiento premium enfocado en la experiencia del usuario y el confort urbano, adaptando tendencias contemporáneas a las limitantes del terreno.</p>
+                    <p><strong>Participación:</strong> Co-diseñador (Desarrollo del programa arquitectónico, selección de texturas/materiales y conceptualización de volumetría).</p>
+                </div>
+            </div>
+
+            <div class="proyecto-card">
+                <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=500" alt="Pabellón Sostenible" class="proyecto-img">
+                <div class="proyecto-info">
+                    <h3>Pabellón Sostenible</h3>
+                    <p><strong>Descripción:</strong> Estructura comunitaria modular diseñada bajo principios de arquitectura efímera y reciclaje de materiales, minimizando por completo la huella de carbono.</p>
+                    <p><strong>Participación:</strong> Liderazgo Técnico (Análisis bioclimático y propuesta de materiales de bajo impacto ambiental).</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="prospectiva-section" id="prospectiva">
+        <h2 class="titulo-seccion">Visión Prospectiva y Estrategia</h2>
+        <p>Estructura de crecimiento profesional y objetivos definidos para la consolidación en el sector arquitectónico.</p>
+        
+        <div class="timeline">
+            <div class="time-card">
+                <h3>Corto Plazo (1 Año)</h3>
+                <p>Culminar satisfactoriamente el noveno cuatrimestre en GTU, obtener la titulación formal y asegurar una inserción laboral en un despacho enfocado al desarrollo residencial y de proyectos comerciales.</p>
+            </div>
+            <div class="time-card">
+                <h3>Mediano Plazo (3 Años)</h3>
+                <p>Iniciar una especialización de posgrado en Desarrollo Urbano Sostenible, adquiriendo certificaciones técnicas adicionales e incrementando mi liderazgo y cartera de clientes directos.</p>
+            </div>
+            <div class="time-card">
+                <h3>Largo Plazo (5-10 Años)</h3>
+                <p>Consolidar un Taller o Despacho de arquitectura propio bajo la firma de GEOMETRIC, caracterizado por aplicar fielmente la filosofía de espacios vivos, diseño de alta calidad y soluciones sustentables.</p>
+            </div>
+        </div>
+
+        <div class="ruta-critica">
+            <h3>Ruta Crítica</h3>
+            <p>
+                Mi plan de acción se fundamenta en la actualización continua y la especialización formal en software avanzado (BIM) y certificaciones sustentables. Esto, respaldado por un networking constante con constructores y el riguroso aprendizaje directo en obra, servirá como base para mitigar riesgos del mercado y garantizar la excelencia competitiva.
+            </p>
+        </div>
+    </section>
+
+    <section class="contacto-section" id="contacto">
+        <h2 class="titulo-seccion" style="text-align: center;">Contacto</h2>
+        <p>¿Interesado en conocer más de mi perfil o proponer una colaboración profesional? ¡Hablemos!</p>
+        
+        <div class="contacto-container">
+            <div class="contacto-item">
+                <h4>Correo Electrónico</h4>
+                <p>castrodanny814@gmail.com</p>
+            </div>
+            <div class="contacto-item">
+                <h4>Teléfono / WhatsApp</h4>
+                <p>+52 999 140 7897</p>
+            </div>
+            <div class="contacto-item">
+                <h4>Ubicación</h4>
+                <p>Mérida, Yucatán, México</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 | Geometric | Daniel Eliezer Castro May | Asignatura: Prospectiva e Innovación Profesional | Profesor: M. Arq. Rubicel Enrique López Vázquez | Grupo Tecnológico Universitario - Campus Mérida.
+    </footer>
+
+</body>
+</html>
